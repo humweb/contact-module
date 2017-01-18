@@ -61,7 +61,6 @@ class ContactMailer
     {
         $data = $this->data;
         $email = $this->settings->get('contact.email');
-//        dd($data);
         $this->mail->queue('contact::message', $data, function ($message) use ($data, $email) {
             $message->to($email)
                     ->subject('Contact message from: '.$data['first_name'].' '.$data['last_name']);
