@@ -22,9 +22,8 @@ class ContactController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function postSend(ContactFormRequest $request)
+    public function postContact(ContactFormRequest $request)
     {
-
         ContactMailer::send($request->only(array_keys($request->rules())));
 
         return redirect('/')->with('success', 'Thank you, Your message was sent successfully.');

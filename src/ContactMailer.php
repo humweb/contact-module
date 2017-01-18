@@ -59,7 +59,6 @@ class ContactMailer
      */
     protected function sendMessage()
     {
-
         $this->mail->queue('contact::message', $this->data, function ($message) {
             $message->to($this->settings->get('contact.email'))
                     ->subject($this->data->first_name.' '.$this->data->last_name.' - Contact Message');

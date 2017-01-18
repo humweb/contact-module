@@ -9,7 +9,7 @@ $router->get('contact', [
 
 $router->post('contact', [
     'as'   => 'post.contact',
-    'uses' => 'ContactController@postSend'
+    'uses' => 'ContactController@postContact'
 ]);
 
 
