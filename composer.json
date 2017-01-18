@@ -1,0 +1,47 @@
+{
+  "name": "humweb/contact-module",
+  "description": "Contact form module",
+  "keywords": [
+    "laravel",
+    "framework",
+    "contact",
+    "form",
+    "contact form"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Ryun Shofner",
+      "email": "ryun@humboldtweb.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.6.4",
+    "laravel/framework": "5.3.*",
+    "lanin/laravel-email-templates-optimization": "0.1.*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.0||~5.0",
+    "squizlabs/php_codesniffer": "^2.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "Humweb\\Contact\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Humweb\\Tests\\Contact\\": "tests/"
+    }
+  },
+  "config": {
+    "preferred-install": "dist"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0-dev"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
