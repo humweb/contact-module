@@ -9,7 +9,6 @@ use Illuminate\Routing\Router;
 class ContactServiceProvider extends ModuleBaseProvider
 {
 
-
     protected $moduleMeta = [
         'name'    => 'Contact',
         'slug'    => 'contact',
@@ -56,9 +55,6 @@ class ContactServiceProvider extends ModuleBaseProvider
         $this->app->bind('contact.mailer', function ($app) {
             return new ContactMailer($app['mailer'], $app['settings']);
         });
-
-        // Register mailer alias
-        $this->app->alias('contact.mailer', ContactMailer::class);
     }
 
     /**

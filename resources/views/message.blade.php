@@ -18,10 +18,7 @@
         </tr>
         <tr>
             <td>Message</td>
-            <td>{{ $message }}</td>
+            <td>{{ $question }}</td>
         </tr>
     </table>
-    Info:
-    Message:
-    <blockquote></blockquote>
 @stop

@@ -59,9 +59,12 @@ class ContactMailer
      */
     protected function sendMessage()
     {
-        $this->mail->queue('contact::message', $this->data, function ($message) {
-            $message->to($this->settings->get('contact.email'))
-                    ->subject($this->data->first_name.' '.$this->data->last_name.' - Contact Message');
+        $data = $this->data;
+        $email = $this->settings->get('contact.email');
+//        dd($data);
+        $this->mail->queue('contact::message', $data, function ($message) use ($data, $email) {
+            $message->to($email)
+                    ->subject('Contact message from: '.$data['first_name'].' '.$data['last_name']);
         });
 
         return $this;
@@ -75,11 +78,13 @@ class ContactMailer
      */
     protected function sendThanks()
     {
+        $data = $this->data;
+        $from = $this->settings->get('contact.email');
 
-        $this->mail->queue('contact::thanks', $this->data, function ($message) {
-            $message->from($this->settings->get('contact.email'))
-                    ->to($this->data->email)
-                    ->subject('Thank you - '.$this->data->first_name.' '.$this->data->last_name);
+        $this->mail->queue('contact::thanks', $data, function ($message) use ($data, $from) {
+            $message->from($from)
+                    ->to($data['email'])
+                    ->subject('Thank you - '.$data['first_name'].' '.$data['last_name']);
         });
 
         return $this;

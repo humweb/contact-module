@@ -2,10 +2,12 @@
 
 namespace Humweb\Contact\Facades;
 
+use Illuminate\Support\Facades\Facade;
+
 /**
  * Class ContactMailers
  */
-class ContactMailers extends \Illuminate\Support\Facades\Facade
+class ContactMailer extends Facade
 {
     /**
      * Register accessor key

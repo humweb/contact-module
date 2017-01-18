@@ -30,8 +30,8 @@
                             <input name="phone" id="phone" value="{!! old('phone') !!}" type="text" class="form-control" placeholder="Email">
                         </div>
                         <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea name="message" id="message" class="form-control" placeholder="Message" rows="8">{!! old('message') !!}</textarea>
+                            <label for="question">Message</label>
+                            <textarea name="question" id="question" class="form-control" placeholder="Message" rows="8">{!! old('question') !!}</textarea>
                         </div>
                     </div>
                     <div class="panel-footer text-center">
