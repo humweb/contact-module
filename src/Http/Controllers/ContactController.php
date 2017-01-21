@@ -32,6 +32,6 @@ class ContactController extends Controller
     {
         ContactMailer::send($request->only(array_keys($request->rules())));
 
-        return redirect('/')->with('success', 'Thank you, Your message was sent successfully.');
+        return back()->with('success', 'Thank you, Your message was sent successfully.');
     }
 }

@@ -2,6 +2,9 @@
 
 namespace Humweb\Contact;
 
+
+use Humweb\Contact\Mail\Contact;
+use Humweb\Contact\Mail\ThankYou;
 use Humweb\Settings\Setting;
 use Illuminate\Contracts\Mail\MailQueue;
 
@@ -59,12 +62,9 @@ class ContactMailer
      */
     protected function sendMessage()
     {
-        $data = $this->data;
+        $data  = $this->data;
         $email = $this->settings->get('contact.email');
-        $this->mail->queue('contact::message', $data, function ($message) use ($data, $email) {
-            $message->to($email)
-                    ->subject('Contact message from: '.$data['first_name'].' '.$data['last_name']);
-        });
+        $this->mail->send(new Contact($email, $this->data));
 
         return $this;
     }
@@ -77,14 +77,8 @@ class ContactMailer
      */
     protected function sendThanks()
     {
-        $data = $this->data;
         $from = $this->settings->get('contact.email');
-
-        $this->mail->queue('contact::thanks', $data, function ($message) use ($data, $from) {
-            $message->from($from)
-                    ->to($data['email'])
-                    ->subject('Thank you - '.$data['first_name'].' '.$data['last_name']);
-        });
+        $this->mail->send(new ThankYou($from, $this->data));
 
         return $this;
     }

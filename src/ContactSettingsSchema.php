@@ -11,20 +11,19 @@ class ContactSettingsSchema extends SettingsSchema
         parent::__construct($values, $decorator);
 
         $this->settings = [
-            'contact.path' => [
-                'type' => 'text',
-                'label' => 'Path',
-                'description' => '',
-            ],
             'contact.email' => [
                 'type' => 'text',
-                'label' => 'Email',
+                'label' => 'From email',
                 'description' => '',
             ],
-            'contact.template' => [
-                'type' => 'text',
-                'label' => 'Template',
-                'description' => '',
+            'contact.thank_you_mail' => [
+                'type' => 'select',
+                'options' => [
+                    'email' => 'Send email',
+                    'no_email' => 'No email',
+                ],
+                'label' => 'Thank you',
+                'description' => 'Send thank you email.',
             ]
         ];
     }
