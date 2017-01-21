@@ -2,7 +2,6 @@
 
 namespace Humweb\Contact;
 
-
 use Humweb\Contact\Mail\Contact;
 use Humweb\Contact\Mail\ThankYou;
 use Humweb\Settings\Setting;
@@ -13,8 +12,10 @@ class ContactMailer
 
     /**
      * Data
+     *
+     * @var \Illuminate\Support\Collection|array
      */
-    protected $data;
+    protected $data = [];
 
     /**
      * The mail instance
@@ -45,13 +46,17 @@ class ContactMailer
     /**
      * Send contact and thank you emails
      *
-     * @param \Illuminate\Support\Collection $data
+     * @param \Illuminate\Support\Collection|array $data
      *
      * @return void
      */
     public function send($data)
     {
-        $this->setData($data)->sendMessage()->sendThanks();
+        $this->setData($data)->sendMessage();
+
+        if ($this->settings['contact.thank_you_mail'] !== 'no_email') {
+            $this->sendThankYou();
+        }
     }
 
 
@@ -62,7 +67,6 @@ class ContactMailer
      */
     protected function sendMessage()
     {
-        $data  = $this->data;
         $email = $this->settings->get('contact.email');
         $this->mail->send(new Contact($email, $this->data));
 
@@ -75,7 +79,7 @@ class ContactMailer
      *
      * @return $this
      */
-    protected function sendThanks()
+    protected function sendThankYou()
     {
         $from = $this->settings->get('contact.email');
         $this->mail->send(new ThankYou($from, $this->data));
