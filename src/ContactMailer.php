@@ -4,6 +4,7 @@ namespace Humweb\Contact;
 
 use Humweb\Contact\Mail\Contact;
 use Humweb\Contact\Mail\ThankYou;
+use Humweb\Core\Support\StringTemplate;
 use Humweb\Settings\Setting;
 use Illuminate\Contracts\Mail\MailQueue;
 
@@ -54,7 +55,7 @@ class ContactMailer
     {
         $this->setData($data)->sendMessage();
 
-        if ($this->settings['contact.thank_you_mail'] !== 'no_email') {
+        if ($this->settings->get('contact.thank_you_mail') !== 'no_email') {
             $this->sendThankYou();
         }
     }
@@ -81,7 +82,9 @@ class ContactMailer
      */
     protected function sendThankYou()
     {
-        $from = $this->settings->get('contact.email');
+        $from               = $this->settings->get('contact.email');
+        $template           = new StringTemplate($this->settings->get('contact.template_thank_you'), $this->data);
+        $this->data['body'] = $template->compile();
         $this->mail->send(new ThankYou($from, $this->data));
 
         return $this;
