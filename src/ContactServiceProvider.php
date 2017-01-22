@@ -57,6 +57,19 @@ class ContactServiceProvider extends ModuleBaseProvider
         });
     }
 
+    public function getAdminMenu()
+    {
+        return [
+            'Settings' => [
+                [
+                    'label' => 'Contact',
+                    'url'   => '/admin/settings/contact',
+                    'icon'  => '<i class="fa fa-envelope" ></i>',
+                ],
+            ],
+        ];
+    }
+
     /**
      * Get the services provided by the provider.
      *
