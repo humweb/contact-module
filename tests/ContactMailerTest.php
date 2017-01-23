@@ -20,6 +20,8 @@ class ContactMailerTest extends TestCase
     {
 
         // Setup
+        Mail::fake();
+
         $data = [
             'first_name' => 'foo',
             'last_name'  => 'bar',
@@ -32,16 +34,13 @@ class ContactMailerTest extends TestCase
         $email      = 'foo@mail.com';
         $settings   = m::mock(Setting::class);
         $collection = m::mock(Collection::class);
-        Mail::fake();
         $settings->shouldReceive('getSection')->once()->with('contact')->andReturn($collection);
-        $subject = new ContactMailer($settings);
         $collection->shouldReceive('get')->once()->with('contact.thank_you_mail')->andReturn('send_email');
         $collection->shouldReceive('get')->once()->with('contact.template_thank_you')->andReturn('What is the meaning of life.');
-        //        $collection->shouldReceive('get')->once()->with('contact.thank_you_mail')->andReturn('no_email');
-        //        $collection->shouldReceive('get')->once()->with('contact.template_thank_you')->andReturn('string template');
-        $collection->shouldReceive('get')->once()->with('contact.email')->andReturn($email);
+        $collection->shouldReceive('get')->twice()->with('contact.email')->andReturn($email);
 
         // Action
+        $subject = new ContactMailer($settings);
         $subject->send($data);
 
         // Expect
