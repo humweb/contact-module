@@ -6,7 +6,7 @@ use Humweb\Contact\Mail\Contact;
 use Humweb\Contact\Mail\ThankYou;
 use Humweb\Core\Support\StringTemplate;
 use Humweb\Settings\Setting;
-use Illuminate\Contracts\Mail\MailQueue;
+use Illuminate\Support\Facades\Mail;
 
 class ContactMailer
 {
@@ -34,12 +34,11 @@ class ContactMailer
     /**
      * ContactMailer constructor.
      *
-     * @param \Illuminate\Contracts\Mail\MailQueue $mail
-     * @param \Humweb\Settings\Setting             $settings
+     * @param \Illuminate\Contracts\Mail\Mailer $mail
+     * @param \Humweb\Settings\Setting          $settings
      */
-    public function __construct(MailQueue $mail, Setting $settings)
+    public function __construct(Setting $settings)
     {
-        $this->mail     = $mail;
         $this->settings = $settings->getSection('contact');
     }
 
@@ -66,10 +65,10 @@ class ContactMailer
      *
      * @return $this
      */
-    protected function sendMessage()
+    public function sendMessage()
     {
         $email = $this->settings->get('contact.email');
-        $this->mail->send(new Contact($email, $this->data));
+        Mail::send(new Contact($email, $this->data));
 
         return $this;
     }
@@ -85,7 +84,7 @@ class ContactMailer
         $from               = $this->settings->get('contact.email');
         $template           = new StringTemplate($this->settings->get('contact.template_thank_you'), $this->data);
         $this->data['body'] = $template->compile();
-        $this->mail->send(new ThankYou($from, $this->data));
+        Mail::send(new ThankYou($from, $this->data));
 
         return $this;
     }
@@ -126,4 +125,27 @@ class ContactMailer
     {
         return $this->mail;
     }
+
+
+    /**
+     * @return mixed
+     */
+    public function getSettings()
+    {
+        return $this->settings;
+    }
+
+
+    /**
+     * @param mixed $settings
+     *
+     * @return ContactMailer
+     */
+    public function setSettings($settings)
+    {
+        $this->settings = $settings;
+
+        return $this;
+    }
+
 }
