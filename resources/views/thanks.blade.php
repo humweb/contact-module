@@ -1,5 +1,5 @@
 @extends('contact::layout')
 
 @section('content')
-{!! $body !!}
+    {!! $body !!}
 @stop

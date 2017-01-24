@@ -5,7 +5,6 @@ namespace Humweb\Contact;
 use Humweb\Modules\ModuleBaseProvider;
 use Illuminate\Routing\Router;
 
-
 class ContactServiceProvider extends ModuleBaseProvider
 {
 
@@ -17,6 +16,7 @@ class ContactServiceProvider extends ModuleBaseProvider
         'email'   => 'ryun@humboldtweb.com',
         'website' => 'http://humboldtweb.com',
     ];
+
 
     /**
      * Boot the service provider.
@@ -43,7 +43,6 @@ class ContactServiceProvider extends ModuleBaseProvider
     }
 
 
-
     /**
      * Register the service provider.
      *
@@ -57,6 +56,7 @@ class ContactServiceProvider extends ModuleBaseProvider
         });
     }
 
+
     public function getAdminMenu()
     {
         return [
@@ -69,6 +69,7 @@ class ContactServiceProvider extends ModuleBaseProvider
             ],
         ];
     }
+
 
     /**
      * Get the services provided by the provider.
