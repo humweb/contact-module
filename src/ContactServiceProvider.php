@@ -52,7 +52,7 @@ class ContactServiceProvider extends ModuleBaseProvider
     {
         // Register mailer
         $this->app->bind('contact.mailer', function ($app) {
-            return new ContactMailer($app['mailer'], $app['settings']);
+            return new ContactMailer($app['settings']);
         });
     }
 
