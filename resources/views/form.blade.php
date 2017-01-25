@@ -27,7 +27,7 @@
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone</label>
-                            <input name="phone" id="phone" value="{!! old('phone') !!}" type="text" class="form-control" placeholder="Email">
+                            <input name="phone" id="phone" value="{!! old('phone') !!}" type="text" class="form-control" placeholder="555-555-5555">
                         </div>
                         <div class="form-group">
                             <label for="question">Message</label>
