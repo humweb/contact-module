@@ -34,7 +34,6 @@ class ContactMailer
     /**
      * ContactMailer constructor.
      *
-     * @param \Illuminate\Contracts\Mail\Mailer $mail
      * @param \Humweb\Settings\Setting          $settings
      */
     public function __construct(Setting $settings)
@@ -81,10 +80,9 @@ class ContactMailer
      */
     protected function sendThankYou()
     {
-        $from               = $this->settings->get('contact.email');
         $template           = new StringTemplate($this->settings->get('contact.template_thank_you'), $this->data);
         $this->data['body'] = $template->compile();
-        Mail::send(new ThankYou($from, $this->data));
+        Mail::send(new ThankYou($this->data));
 
         return $this;
     }

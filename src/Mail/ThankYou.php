@@ -10,7 +10,6 @@ class ThankYou extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $emailAddress;
     public $data;
 
 
@@ -20,10 +19,9 @@ class ThankYou extends Mailable
      * @param       $emailAddress
      * @param array $data
      */
-    public function __construct($emailAddress, $data = [])
+    public function __construct($data = [])
     {
         $this->data         = $data;
-        $this->emailAddress = $emailAddress;
     }
 
 
@@ -35,7 +33,6 @@ class ThankYou extends Mailable
     public function build()
     {
         return $this->view('contact::thanks', $this->data)
-                    ->from($this->emailAddress)
                     ->to($this->data['email'])
                     ->subject('Thank you - '.$this->data['first_name'].' '.$this->data['last_name']);
     }

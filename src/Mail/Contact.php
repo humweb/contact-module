@@ -35,7 +35,6 @@ class Contact extends Mailable
     public function build()
     {
         return $this->view('contact::message', $this->data)
-                    ->from($this->emailAddress)
                     ->to($this->emailAddress)
                     ->subject('Contact message from: '.$this->data['first_name'].' '.$this->data['last_name']);
     }
