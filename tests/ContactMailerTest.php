@@ -37,7 +37,7 @@ class ContactMailerTest extends TestCase
         $settings->shouldReceive('getSection')->once()->with('contact')->andReturn($collection);
         $collection->shouldReceive('get')->once()->with('contact.thank_you_mail')->andReturn('send_email');
         $collection->shouldReceive('get')->once()->with('contact.template_thank_you')->andReturn('What is the meaning of life.');
-        $collection->shouldReceive('get')->twice()->with('contact.email')->andReturn($email);
+        $collection->shouldReceive('get')->once()->with('contact.email')->andReturn($email);
 
         // Action
         $subject = new ContactMailer($settings);
