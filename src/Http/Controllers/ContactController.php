@@ -18,6 +18,9 @@ class ContactController extends Controller
     }
     public function getForm()
     {
+        if (view()->exists('layouts.contactpage')) {
+            $this->setLayout('layouts.contactpage');
+        }
         return $this->setContent('contact::form');
     }
 
