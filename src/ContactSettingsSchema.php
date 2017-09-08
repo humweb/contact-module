@@ -23,8 +23,7 @@ class ContactSettingsSchema extends SettingsSchema
                     'email'    => 'Send email',
                     'no_email' => 'No email',
                 ],
-                'label'       => 'Thank you',
-                'description' => 'Send thank you email.',
+                'label'       => 'Send thank you email',
             ],
 
             'contact.template_thank_you' => [

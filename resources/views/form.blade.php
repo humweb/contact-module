@@ -4,15 +4,15 @@
 @endsection
 
 @section('content')
-    <div class="row">
-        <div class="col-md-6 col-sm-12 col-md-offset-3">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-sm-12">
             <form action="{{ URL::route('post.contact') }}" method="POST">
                 {{ csrf_field() }}
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+                <div class="card card-default">
+                    <div class="card-header">
                         <h4>Contact Us</h4>
                     </div>
-                    <div class="panel-body">
+                    <div class="card-body">
                         <div class="form-group">
                             <label for="first_name">First Name</label>
                             <input name="first_name" id="first_name" value="{!! old('first_name') !!}" type="text" class="form-control" placeholder="First Name">
@@ -34,7 +34,7 @@
                             <textarea name="question" id="question" class="form-control" placeholder="Message" rows="8">{!! old('question') !!}</textarea>
                         </div>
                     </div>
-                    <div class="panel-footer text-center">
+                    <div class="card-footer text-center">
                         <button class="btn btn-primary" type="submit">Send</button>
                     </div>
                 </div>
