@@ -37,9 +37,10 @@ class ContactServiceProvider extends ModuleBaseProvider
         $this->app['settings.schema.manager']->register('contact', 'Humweb\Contact\ContactSettingsSchema');
 
         // Routes
-        $this->app->router->group(['namespace' => 'Humweb\Contact\Http\Controllers', 'middleware' => 'web'], function (Router $router) {
-            require __DIR__.'/Http/routes.php';
-        });
+        $this->app->router->group(['namespace' => 'Humweb\Contact\Http\Controllers', 'middleware' => 'web'],
+            function (Router $router) {
+                require __DIR__.'/Http/routes.php';
+            });
     }
 
 
@@ -64,7 +65,7 @@ class ContactServiceProvider extends ModuleBaseProvider
                 [
                     'label' => 'Contact',
                     'url'   => '/admin/settings/contact',
-                    'icon'  => '<i class="fa fa-envelope" ></i>',
+                    'icon'  => '<i class="fa fa-fw fa-envelope"></i>',
                 ],
             ],
         ];

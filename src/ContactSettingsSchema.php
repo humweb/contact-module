@@ -18,12 +18,12 @@ class ContactSettingsSchema extends SettingsSchema
             ],
 
             'contact.thank_you_mail' => [
-                'type'        => 'select',
-                'options'     => [
+                'type'    => 'select',
+                'options' => [
                     'email'    => 'Send email',
                     'no_email' => 'No email',
                 ],
-                'label'       => 'Send thank you email',
+                'label'   => 'Send thank you email',
             ],
 
             'contact.template_thank_you' => [

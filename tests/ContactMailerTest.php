@@ -36,7 +36,10 @@ class ContactMailerTest extends TestCase
         $collection = m::mock(Collection::class);
         $settings->shouldReceive('getSection')->once()->with('contact')->andReturn($collection);
         $collection->shouldReceive('get')->once()->with('contact.thank_you_mail')->andReturn('send_email');
-        $collection->shouldReceive('get')->once()->with('contact.template_thank_you')->andReturn('What is the meaning of life.');
+        $collection->shouldReceive('get')
+                   ->once()
+                   ->with('contact.template_thank_you')
+                   ->andReturn('What is the meaning of life.');
         $collection->shouldReceive('get')->once()->with('contact.email')->andReturn($email);
 
         // Action

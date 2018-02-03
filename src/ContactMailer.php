@@ -34,7 +34,7 @@ class ContactMailer
     /**
      * ContactMailer constructor.
      *
-     * @param \Humweb\Settings\Setting          $settings
+     * @param \Humweb\Settings\Setting $settings
      */
     public function __construct(Setting $settings)
     {
